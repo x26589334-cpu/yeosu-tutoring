@@ -1,0 +1,28 @@
+# 여수과외 — main 에 push 하면 Cloudflare Pages(yeosu-tutoring)로 올린다. (자동 생성: 사이트관리/도구/지역과외)
+# 비밀값 CLOUDFLARE_API_TOKEN(배포 전용, Pages Edit 만) · CLOUDFLARE_ACCOUNT_ID 는 저장소 Settings → Secrets 에 있음.
+name: Deploy to Cloudflare Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+concurrency:
+  group: cloudflare-pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: 올릴 파일만 모으기
+        run: |
+          rsync -a ./ _site/ \
+            --exclude='.git' --exclude='.github' --exclude='_site' \
+            --exclude='*.md' --exclude='tools' --exclude='CNAME' --exclude='.gitignore'
+          echo "올릴 파일: $(find _site -type f | wc -l)개"
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy _site --project-name=yeosu-tutoring --branch=main --commit-dirty=true

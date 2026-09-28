@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>여수 과외 선생님 찾기 — 화상과외 선생님 673명 | 여수과외</title>
+<meta name="description" content="전라남도 여수시 학생을 맡는 화상과외 선생님 673명을 과목·학년·성별로 골라 보세요. 국어·영어·수학·사회·과학·코딩 1:1 맞춤 과외." />
+<meta name="keywords" content="여수 과외 선생님, 여수 화상과외 선생님, 화상과외 선생님, 여수 수학 선생님, 여수 영어 선생님, 여수 국어 선생님" />
+<link rel="canonical" href="https://nadolesson.co.kr/teachers" />
+<meta name="theme-color" content="#2f7d92" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="여수과외" />
+<meta property="og:title" content="여수 과외 선생님 찾기 — 화상과외 선생님 673명 | 여수과외" />
+<meta property="og:description" content="전라남도 여수시 학생을 맡는 화상과외 선생님 673명을 과목·학년·성별로 골라 보세요. 국어·영어·수학·사회·과학·코딩 1:1 맞춤 과외." />
+<meta property="og:url" content="https://nadolesson.co.kr/teachers" />
+<meta property="og:locale" content="ko_KR" />
+<meta name="twitter:card" content="summary" />
+<link rel="icon" href="favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fastly.jsdelivr.net" crossorigin />
+<link rel="stylesheet" href="style.css?v=7" />
+<script src="analytics.js" defer></script>
+
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a href="./" class="brand"><span class="logo">여수</span>여수과외</a>
+    <nav class="nav-links">
+      <a href="./">홈</a>
+      <a href="schools">학교별 과외</a>
+      <a href="online" class="active">화상과외</a>
+      <a href="blog">지역 소식</a>
+    </nav>
+    <div class="nav-cta"><a href="tel:01068321994" class="btn btn-primary btn-sm">📞 상담신청</a></div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="crumb"><a href="./">홈</a> › 선생님</div>
+    <h1>여수 과외 선생님</h1>
+    <p class="lead">여수시 학생을 맡는 화상과외 선생님 <b>673명</b>. 과목·학년·성별로 좁혀 보세요.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="toolbar">
+      <input class="search" id="tq" type="search" placeholder="한줄소개·과목으로 검색 (예: 수학 내신, 화상 영어)" autocomplete="off" />
+    </div>
+    <div class="toolbar">
+      
+      <div class="chips" id="subChips">
+        <button class="chip" data-sub="" aria-pressed="true">전 과목</button>
+        <button class="chip" data-sub="국어" aria-pressed="false">국어</button>
+        <button class="chip" data-sub="영어" aria-pressed="false">영어</button>
+        <button class="chip" data-sub="수학" aria-pressed="false">수학</button>
+        <button class="chip" data-sub="사회" aria-pressed="false">사회</button>
+        <button class="chip" data-sub="과학" aria-pressed="false">과학</button>
+        <button class="chip" data-sub="코딩" aria-pressed="false">코딩</button>
+      </div>
+      <div class="chips" id="gChips">
+        <button class="chip" data-g="" aria-pressed="true">성별 무관</button>
+        <button class="chip" data-g="여" aria-pressed="false">여선생님</button>
+        <button class="chip" data-g="남" aria-pressed="false">남선생님</button>
+      </div>
+    </div>
+    <p class="small muted" id="tcnt"></p>
+    <div class="t-grid" id="tlist"></div>
+    <button class="btn btn-ghost" id="more">더 보기</button>
+    <div class="hl-box" style="margin-top:34px">선생님 성함은 개인정보 보호를 위해 일부만 표시합니다. 상담을 신청하시면 아이 학년·과목·성향에 맞는 선생님을 골라 프로필을 자세히 안내해 드립니다.</div>
+  </div>
+</section>
+
+<section id="apply" class="soft">
+  <div class="wrap">
+    <h2 class="center">여수 과외 무료 상담 신청</h2>
+    <p class="lead center">학년·과목·학교만 알려주시면 맞는 선생님을 찾아 24시간 안에 연락드립니다. 상담은 무료입니다.</p>
+    <div class="form-card" style="margin-top:26px">
+      <form id="tapply">
+        <div class="row2">
+          <div class="field"><label for="tapply_name">학부모/학생 이름 *</label><input id="tapply_name" required placeholder="홍길동" /></div>
+          <div class="field"><label for="tapply_phone">연락처 *</label><input id="tapply_phone" required inputmode="tel" placeholder="010-0000-0000" /></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label for="tapply_school">학교 *</label><input id="tapply_school" required placeholder="예: 거문중학교" /></div>
+          <div class="field"><label for="tapply_grade">학년 *</label>
+            <select id="tapply_grade" required>
+              <option value="">선택</option>
+              <option>초1</option><option>초2</option><option>초3</option><option>초4</option><option>초5</option><option>초6</option><option>중1</option><option>중2</option><option>중3</option><option>고1</option><option>고2</option><option>고3</option><option>재수생</option>
+            </select></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label for="tapply_subject">과목 *</label>
+            <select id="tapply_subject" required>
+              <option value="">선택</option>
+              <option>국어</option><option>영어</option><option>수학</option><option>사회</option><option>과학</option><option>코딩</option><option>전과목</option><option>내신 대비</option><option>입시 상담</option>
+            </select></div>
+          <div class="field"><label for="tapply_mode">수업 방식</label>
+            <select id="tapply_mode"><option>방문수업</option><option>화상수업</option><option>상관없음</option></select></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label for="tapply_area">사는 곳 (읍·면·동)</label><input id="tapply_area" placeholder="예: 중앙동" list="tapply_dongs" />
+            <datalist id="tapply_dongs"><option value="중앙동"><option value="충무동"><option value="한려동"><option value="서강동"><option value="대교동"><option value="국동"><option value="월호동"><option value="여서동"><option value="문수동"><option value="미평동"><option value="둔덕동"><option value="만덕동"><option value="쌍봉동"><option value="시전동"><option value="여천동"><option value="주삼동"><option value="삼일동"><option value="묘도동"><option value="돌산읍"><option value="소라면"><option value="율촌면"><option value="화양면"><option value="남면"><option value="화정면"><option value="삼산면"></datalist></div>
+          <div class="field"><label for="tapply_gender">선생님 성별</label>
+            <select id="tapply_gender"><option>상관없음</option><option>여선생님</option><option>남선생님</option></select></div>
+        </div>
+        <div class="field"><label for="tapply_memo">남기실 말씀</label><textarea id="tapply_memo" placeholder="지금 어려워하는 부분, 원하는 수업 시간 등을 적어주세요."></textarea></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">무료 상담 신청하기</button>
+        <div class="ok" id="tapply_ok">신청이 접수되었습니다. 곧 연락드리겠습니다. 급하시면 010-6832-1994 로 전화 주세요.</div>
+      </form>
+      <p class="small muted center" style="margin:14px 0 0">전화 상담도 가능합니다 — <a href="tel:01068321994"><b>010-6832-1994</b></a></p>
+    </div>
+  </div>
+</section>
+<script src="teachers-data.js?v=1" defer></script>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <div class="brand"><span class="logo">여수</span>여수과외</div>
+      <p class="small">전라남도 여수시 초·중·고 학생을 위한 1:1 맞춤 과외. 국어·영어·수학·사회·과학·코딩, 내신과 입시까지 화상수업으로 함께합니다.</p>
+    </div>
+    <div>
+      <h5>바로가기</h5>
+      <ul>
+        <li><a href="schools">여수 학교별 과외</a></li>
+        <li><a href="teachers">선생님 찾기</a></li>
+        <li><a href="online">화상과외 안내</a></li>
+        
+        <li><a href="blog">여수 학습 소식</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>상담</h5>
+      <ul>
+        <li><a href="tel:01068321994">전화 010-6832-1994</a></li>
+        <li><a href="./#apply">온라인 상담신청</a></li>
+        <li>상담시간 09:00 – 21:00</li>
+        <li>전라남도 여수시 전 지역 · 화상수업 전국</li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap copy-bar">
+    <span>© 2026 여수과외. All rights reserved.</span>
+    <span>중앙동 · 충무동 · 한려동 · 서강동 · 대교동 · 국동 등 여수시 전역</span>
+  </div>
+</footer>
+<div class="float-cta">
+  <a href="tel:01068321994" class="btn btn-primary">📞 010-6832-1994</a>
+  <a href="./#apply" class="btn btn-ghost">상담신청</a>
+</div>
+<script src="app.js?v=1" defer></script>
+<script src="form.js?v=2" defer></script>
+<script src="quick.js?v=1" defer></script>
+</body>
+</html>
