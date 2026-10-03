@@ -35,7 +35,7 @@ window.QCFG={"ep":"https://script.google.com/macros/s/AKfycbznAb0ZOODlNp-ckR5fvk
         '<input type="text" id="q_school" placeholder="학교 (선택)">' +
         '<input type="text" id="q_area" placeholder="사는 곳 읍·면·동 (선택)" list="q_dongs">' +
         '<datalist id="q_dongs">' + C.dongs.map(function(d){ return '<option value="' + esc(d) + '">'; }).join('') + '</datalist>' +
-        '<textarea id="q_memo" placeholder="원하시는 수업이나 궁금한 점을 편하게 적어 주세요 (선택)"></textarea>' +
+        '<textarea id="q_memo" placeholder="남기실 말이 있으면 적어주세요 (선택)"></textarea>' +
         '<button type="button" class="q-submit">바로 신청하기</button>' +
       '</div>' +
       '<div class="q-step q-s3">' +
