@@ -1,6 +1,6 @@
 /* 여수과외 — 간편선택 팝업 (생성기 출력물: 사이트관리/도구/지역과외/quickpick.js)
    과목 타일 → 학년·연락처 → 허브 Apps Script 로 전송(sheet=지역과외). 손으로 고치지 말 것. */
-window.QCFG={"ep":"https://script.google.com/macros/s/AKfycbznAb0ZOODlNp-ckR5fvkqtVQijwuJ9Gl0G4KxDrfp-K7zM4fcfMMp5qDhAbwNkvYQG/exec","tab":"지역과외","site":"여수과외","area":"전라남도 여수시","tel":"010-6832-1994","telRaw":"01068321994","hasVisit":false,"dongs":["중앙동","충무동","한려동","서강동","대교동","국동","월호동","여서동","문수동","미평동","둔덕동","만덕동","쌍봉동","시전동","여천동","주삼동","삼일동","묘도동","돌산읍","소라면","율촌면","화양면","남면","화정면","삼산면"],"tiles":[["국어과외","📖","교과서 지문과 서술형을 학교 시험에 맞춰 함께 봅니다"],["영어과외","🔤","단어·문법부터 서술형까지 학교별 기출로 준비합니다"],["수학과외","📐","지금 진도와 빠진 단원을 같이 찾아 메웁니다"],["과학과외","🔬","개념과 그래프·실험 문제를 함께 정리합니다"],["사회과외","🗺️","흐름을 먼저 잡고 서술형 문장으로 정리합니다"],["한국사과외","🏛️","시대 흐름부터 수능 한국사까지 단계별로"],["자기주도학습과외","🧭","공부 계획과 습관부터 같이 만들어 갑니다"],["코딩과외","💻","정보 교과·블록코딩부터 파이썬까지"],["영어회화과외","💬","말하기 중심 1:1 수업으로 입을 틔웁니다"]],"grades":["초1~3","초4~6","중1","중2","중3","고1","고2","고3·재수생"],"links":[["여수 학교별 과외","https://nadolesson.co.kr/schools"],["화상과외 안내","https://nadolesson.co.kr/online"],["여수 지역 소식","https://nadolesson.co.kr/blog"]]};
+window.QCFG={"ep":"https://script.google.com/macros/s/AKfycbznAb0ZOODlNp-ckR5fvkqtVQijwuJ9Gl0G4KxDrfp-K7zM4fcfMMp5qDhAbwNkvYQG/exec","tab":"지역과외","site":"여수과외","area":"전라남도 여수시","tel":"010-6832-1994","telRaw":"01068321994","hasVisit":false,"dongs":["중앙동","충무동","한려동","서강동","대교동","국동","월호동","여서동","문수동","미평동","둔덕동","만덕동","쌍봉동","시전동","여천동","주삼동","삼일동","묘도동","돌산읍","소라면","율촌면","화양면","남면","화정면","삼산면"],"tiles":[["국어과외","📖","교과서 지문과 서술형을 학교 시험에 맞춰 함께 봅니다"],["영어과외","🔤","단어·문법부터 서술형까지 학교별 기출로 준비합니다"],["수학과외","📐","지금 진도와 빠진 단원을 같이 찾아 메웁니다"],["과학과외","🔬","개념과 그래프·실험 문제를 함께 정리합니다"],["사회과외","🗺️","흐름을 먼저 잡고 서술형 문장으로 정리합니다"],["한국사과외","🏛️","시대 흐름부터 수능 한국사까지 단계별로"],["자기주도학습과외","🧭","공부 계획과 습관부터 같이 만들어 갑니다"],["코딩과외","💻","정보 교과·블록코딩부터 파이썬까지"],["영어회화과외","💬","말하기 중심 1:1 수업으로 입을 틔웁니다"]],"grades":["초1","초2","초3","초4","초5","초6","중1","중2","중3","고1","고2","고3·재수생"],"links":[["여수 학교별 과외","https://nadolesson.co.kr/schools"],["화상과외 안내","https://nadolesson.co.kr/online"],["여수 지역 소식","https://nadolesson.co.kr/blog"]]};
 
 (function(){
   var C = window.QCFG;
@@ -32,10 +32,10 @@ window.QCFG={"ep":"https://script.google.com/macros/s/AKfycbznAb0ZOODlNp-ckR5fvk
           '<input type="text" id="q_name" placeholder="이름 *" autocomplete="name">' +
           '<input type="tel" id="q_phone" placeholder="연락처 *" autocomplete="tel">' +
         '</div>' +
-        '<input type="text" id="q_school" placeholder="학교 (선택)">' +
-        '<input type="text" id="q_area" placeholder="사는 곳 읍·면·동 (선택)" list="q_dongs">' +
-        '<datalist id="q_dongs">' + C.dongs.map(function(d){ return '<option value="' + esc(d) + '">'; }).join('') + '</datalist>' +
-        '<textarea id="q_memo" placeholder="원하시는 수업이나 궁금한 점을 편하게 적어 주세요 (선택)"></textarea>' +
+        /* 2026-10-04 사용자 요청: 학교·주소·특이사항 모두 필수 */
+        '<input type="text" id="q_school" placeholder="학교 *">' +
+        '<input type="text" id="q_addr" placeholder="주소 (자택 도로명 주소) *" autocomplete="street-address">' +
+        '<textarea id="q_memo" placeholder="특이사항 * (원하시는 요일·시간, 아이 상황 등)"></textarea>' +
         '<button type="button" class="q-submit">바로 신청하기</button>' +
       '</div>' +
       '<div class="q-step q-s3">' +
@@ -109,7 +109,10 @@ window.QCFG={"ep":"https://script.google.com/macros/s/AKfycbznAb0ZOODlNp-ckR5fvk
       var btn = this;
       var v = function(id){ var e = document.getElementById(id); return e ? e.value.trim() : ''; };
       var name = v('q_name'), phone = v('q_phone');
-      if (!name || !phone) { alert('이름과 연락처를 입력해 주세요.'); (document.getElementById(name ? 'q_phone' : 'q_name') || {}).focus && document.getElementById(name ? 'q_phone' : 'q_name').focus(); return; }
+      var need = [['q_name', '이름'], ['q_phone', '연락처'], ['q_school', '학교'], ['q_addr', '주소'], ['q_memo', '특이사항']];
+      for (var i = 0; i < need.length; i++) {
+        if (!v(need[i][0])) { alert(need[i][1] + '을(를) 입력해 주세요.'); document.getElementById(need[i][0]).focus(); return; }
+      }
       btn.disabled = true; btn.textContent = '접수 중…';
       var memo = v('q_memo');
       /* form.js 와 같은 항목 이름으로 보내야 같은 시트 칸에 들어간다 (사이트관리/사이트대장.md 2절) */
@@ -118,8 +121,8 @@ window.QCFG={"ep":"https://script.google.com/macros/s/AKfycbznAb0ZOODlNp-ckR5fvk
         사이트: C.site, 지역: C.area,
         이름: name, 연락처: phone, 학교: v('q_school'),
         학년: grade, 과목: subject, 수업방식: (mode || (C.hasVisit ? '' : '화상수업')),
-        읍면동: v('q_area'), 선생님성별: '',
-        남길말: (memo ? '[간편선택] ' + memo : '[간편선택]'),
+        주소: v('q_addr'), 선생님성별: '',
+        남길말: '[간편선택] ' + memo,
         신청페이지: location.origin + location.pathname
       });
       fetch(C.ep, {
