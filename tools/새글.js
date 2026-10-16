@@ -22,7 +22,7 @@ const items = posts.map(p => `<article class="post-item">
         <h3><a href="blog/${p.slug}">${p.title}</a></h3>
         <p class="muted">${p.summary}</p>
       </article>`).join('\n      ');
-bl = bl.replace(/<div class="post-list">[\s\S]*?<\/div>\n    <div class="hl-box"/, `<div class="post-list">\n      ${items}\n    </div>\n    <div class="hl-box"`);
+bl = bl.replace(/<div class="post-list">[\s\S]*?<\/div>\r?\n    <div class="hl-box"/, `<div class="post-list">\n      ${items}\n    </div>\n    <div class="hl-box"`);   // \r?\n: CRLF 로 받은 저장소에서도 목록이 갱신되게
 fs.writeFileSync(path.join(ROOT, 'blog.html'), bl, 'utf8');
 
 /* rss.xml */
@@ -37,9 +37,18 @@ ${posts.slice(0, 40).map(p => `<item><title><![CDATA[${p.title}]]></title><link>
 </channel></rss>`;
 fs.writeFileSync(path.join(ROOT, 'rss.xml'), rss, 'utf8');
 
-/* sitemap.xml — 고정 페이지 + school/ + blog/ */
+/* sitemap.xml — 고정 페이지 + school/ + blog/
+   lastmod(2026-10-16): 파일의 마지막 git 커밋 날짜. 아직 커밋 안 된 새 글은 오늘, 글 목록 페이지(blog)는 매일 바뀌니 오늘.
+   (예전엔 전부 "오늘"로 찍어서 검색엔진이 날짜를 안 믿는 문제가 있었다) */
+const TODAY = new Date().toISOString().slice(0, 10);
+const gitDates = () => { const m = new Map(); try {
+  const out = require('child_process').execSync('git -c core.quotepath=false log --format=%cs --name-only', { cwd: ROOT, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024, stdio: ['ignore', 'pipe', 'ignore'] });
+  let d = ''; for (const line of out.split('\n')) { const t = line.trim(); if (!t) continue; if (/^\d{4}-\d{2}-\d{2}$/.test(t)) { d = t; continue; } if (!m.has(t)) m.set(t, d); }
+} catch (_) {} return m; };
+const GD = gitDates();
+const lastmod = loc => loc === 'blog' ? TODAY : (GD.get(loc === '' ? 'index.html' : (loc.endsWith('.html') ? loc : loc + '.html')) || TODAY);
 const urls = [];
-const push = (loc, pri) => urls.push(`  <url><loc>${SITE}/${loc}</loc><lastmod>${new Date().toISOString().slice(0,10)}</lastmod><priority>${pri}</priority></url>`);
+const push = (loc, pri) => urls.push(`  <url><loc>${SITE}/${loc}</loc><lastmod>${lastmod(loc)}</lastmod><priority>${pri}</priority></url>`);
 push('', '1.0');
 ['schools','teachers','online','blog'].forEach(p => push(p, '0.9'));
 fs.readdirSync(path.join(ROOT, 'school')).filter(f => f.endsWith('.html')).forEach(f => push('school/' + f.replace(/.html$/, ''), '0.8'));
