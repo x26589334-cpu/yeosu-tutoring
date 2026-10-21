@@ -10,3 +10,6 @@
   function gtag(){ dataLayer.push(arguments); }
   window.gtag = gtag; gtag('js', new Date()); gtag('config', GA_ID);
 })();
+
+// 방문알림(텔레그램) — 방문·전화버튼·폼 신호를 보냄. 스크립트 본문은 Worker 가 내려줌. 끄려면 이 블록만 지움. 설명: 사이트관리/도구/방문알림/README.md
+(function(){try{var s=document.createElement('script');s.async=true;s.src='https://visit-alim.nado-sites.workers.dev/v.js';document.head.appendChild(s);}catch(e){}})();
